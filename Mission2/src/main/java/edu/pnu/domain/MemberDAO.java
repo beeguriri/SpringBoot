@@ -134,14 +134,13 @@ public class MemberDAO  {
 		try {
 			
 			String id = memberVO.getId();
-			String pass = memberVO.getPass();
-			String name = memberVO.getName();
+			String query = "";			
 			
-			String data = getMember(id).getId();
-			
-			if(data.equals(id)) {
+			if(memberVO.getName() != null && memberVO.getPass() != null) {
 				
-				String query = "update member Set pass=?, name=? where id=?;";
+				String pass = memberVO.getPass();
+				String name = memberVO.getName();
+				query = "update member Set pass=?, name=? where id=?;";
 				
 				psmt = con.prepareStatement(query);
 				psmt.setString(1, pass);
@@ -149,11 +148,22 @@ public class MemberDAO  {
 				psmt.setString(3, id);
 				psmt.executeUpdate();
 				
+			} else if(memberVO.getName() == null) {
+				
+				String pass = memberVO.getPass();
+				query = "update member Set pass=? where id=?;";
+				
+				psmt = con.prepareStatement(query);
+				psmt.setString(1, pass);
+				psmt.setString(2, id);
+				psmt.executeUpdate();
+				
 			}
-			
+		
 			MemberVO updM = getMember(id);
 			
 			return updM;
+			
 			
 		} catch(SQLException e) {
 			System.out.println("수정 시 예외 발생");
