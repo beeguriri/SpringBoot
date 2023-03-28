@@ -2,6 +2,8 @@ package edu.pnu.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +18,17 @@ import edu.pnu.service.MemberService;
 public class MemberController {
 
 	MemberService service = new MemberService();
-//	private static final Logger log = LoggerFactory.getILoggerFactory();
+	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 	
 	public MemberController() {
 		System.out.println("===> MemberController 생성");
+		log.info("===> MemberController 생성");
+		log.error("Error Message");
+		log.warn("warn Message");
+		log.info("info Message");
+		log.debug("debug Message");
+		log.trace("trace Message");
+		
 	}
 	
 	@GetMapping("/member")
