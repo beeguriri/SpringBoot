@@ -11,7 +11,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MemberDAO  {
+public class MemberDAO{
 	
 	Connection con = null;
 	PreparedStatement psmt = null;
@@ -44,6 +44,7 @@ public class MemberDAO  {
 		}
 	}
 	
+	
 	public List<MemberVO> getMembers() {
 		
 		List<MemberVO> list = new ArrayList<>();
@@ -73,6 +74,7 @@ public class MemberDAO  {
 		return list;
 	}
 
+	
 	public MemberVO getMember(String id) {
 		
 		try {
@@ -104,6 +106,7 @@ public class MemberDAO  {
 		return null;
 	}
 	
+	
 	public MemberVO addMember(MemberVO memberVO) {
 								
 		try {
@@ -131,6 +134,7 @@ public class MemberDAO  {
 		
 		return null;
 	}
+	
 	
 	public MemberVO updateMembers(MemberVO memberVO) {
 		
@@ -174,6 +178,7 @@ public class MemberDAO  {
 		}
 			return null;
 	}
+	
 	
 	public MemberVO removeMember(String id) {
 		
