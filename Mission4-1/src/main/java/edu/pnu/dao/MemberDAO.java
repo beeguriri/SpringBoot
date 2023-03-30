@@ -14,7 +14,7 @@ import java.util.Map;
 import edu.pnu.domain.MemberVO;
 
 public class MemberDAO {
-
+	
 	private Connection con;
 	private Statement st;
 	private ResultSet rs;
@@ -24,10 +24,9 @@ public class MemberDAO {
 	private String name;
 	private Date regidate;
 	
-	Map<Object, String> member = new HashMap<>();
-	Map<Object, String> errMsg = new HashMap<>();
+	Map<String, Object> resp = new HashMap<>();
 	
-	private String query;	
+	public String query;
 	
 	public MemberDAO() {
 		System.out.println("memberDAO");
@@ -39,14 +38,13 @@ public class MemberDAO {
 			
 		} catch (Exception e) {
 			System.out.println("DB접속오류");
-			errMsg.put(query, e.getMessage());
 		}
 	}
 	
-	public Map<Object, String> getMembers() {
+	public Map<String, Object> getMembers() {
 		
 		List<MemberVO> list = new ArrayList<>();
-
+		
 		try {
 			query = "Select * from member";
 			st = con.createStatement();
@@ -63,22 +61,21 @@ public class MemberDAO {
 				list.add(mem);
 			}
 			
-			member.put(list, query);
-			
-			return member;
+			resp.put("list", list);			
+			resp.put("query", query);
+
+			return resp;
 			
 		} catch (SQLException e) {
 			System.out.println("Select 오류");
-			errMsg.put("error", e.getMessage());
+			resp.put("error", e.getMessage());
 			e.printStackTrace();
-			return errMsg;
-
+			return resp;
 		}
 	}
 	
-	
-	public Map<Object, String> getMember(String id) {
-		
+	public Map<String, Object> getMember(String id) {
+				
 		try {
 			
 			MemberVO mem = null;
@@ -97,109 +94,45 @@ public class MemberDAO {
 				mem = new MemberVO(id, pass, name, regidate);
 			}
 			
-			member.put(mem, query);
+			resp.put("get", mem);
+			resp.put("query", query);
 			
-			return member;
-
+			return resp;
 			
 		} catch (SQLException e) {
 			System.out.println("Select 오류");
+			resp.put("error", e.getMessage());
 			e.printStackTrace();
-			errMsg.put("error", e.getMessage());
 			
-			return errMsg;
-
+			return resp;
 		}
 	}
-
-	public Map<Object, String> addMember(MemberVO m) {
+	
+	public Map<String, Object> addMember(MemberVO m) {
 		
 		pass = m.getPass();
 		name = m.getName();
-		
+
 		try {
 			
 			query = String.format("Insert into member(pass, name) Values ('%s', '%s');", pass, name);
-			System.out.println(query);
+			
 			st = con.createStatement();
 			st.executeUpdate(query);
 			
 			MemberVO memAdd = new MemberVO(pass, name);
+			resp.put("add", memAdd);
+			resp.put("query", query);
 			
-			member.put(memAdd, query);
-			
-			return member;
-			
+			return resp;
+
 		} catch (SQLException e) {
-			System.out.println("add 오류");
-			errMsg.put("error", e.getMessage());
+			System.out.println("Insert 오류");
+			resp.put("error", e.getMessage());
 			e.printStackTrace();
-			return errMsg;
+			
+			return resp;
 		}
 	}
-	
-	public Map<Object, String> updateMember(MemberVO m) {
-		
-		id = m.getId();
-		pass = m.getPass();
-		name = m.getName();
-		regidate = m.getRegidate();
-		
-		try {
-			
-			if(pass!=null && name!=null) {
-				
-				query = String.format("Update member Set pass='%s', name='%s' Where id=%s;", pass, name, id);
-				System.out.println(query);
-				st = con.createStatement();
-				st.executeUpdate(query);
-				
-			} else if (pass!=null) {
-				
-				query = String.format("Update member Set pass='%s' Where id=%s;", pass, id);
-				System.out.println(query);
-				st = con.createStatement();
-				st.executeUpdate(query);
-				
-			}			
-			
-			MemberVO memUp = new MemberVO(id, pass, name, regidate);
-			member.put(memUp, query);
-			
-			return member;
-						
-		} catch(Exception e) {
-			System.out.println("update 오류");
-			errMsg.put("error", e.getMessage());
-			e.printStackTrace();
 
-			return errMsg;
-		}
-	}
-	
-	public Map<Object, String> deleteMember(String id) {
-		
-		try {
-			
-			query = String.format("Delete from member where id=%s;", id);
-
-			st = con.createStatement();
-			st.executeUpdate(query);
-			
-			member.put("del", query);
-			
-			return member;
-
-			
-		} catch (SQLException e) {
-			
-			System.out.println("Delete 오류");
-			errMsg.put("error", e.getMessage());
-			e.printStackTrace();			
-			return errMsg;
-		}
-				
-	}
-	
-	
 }

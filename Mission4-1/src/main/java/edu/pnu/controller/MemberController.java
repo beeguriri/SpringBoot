@@ -16,9 +16,10 @@ import edu.pnu.service.MemberService;
 
 @RestController
 public class MemberController {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	MemberService service = new MemberService();
-	private static final Logger log = LoggerFactory.getLogger(MemberController.class);
 
 	public MemberController() {
 		log.info("====> MemberController생성");	
@@ -49,4 +50,5 @@ public class MemberController {
 		return service.deleteMember(id);
 	}
 	
+
 }
