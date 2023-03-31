@@ -1,0 +1,21 @@
+package edu.pnu.dao;
+
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import edu.pnu.domain.MemberVO;
+
+@Repository
+public interface MemberDAO {
+	
+	Map<String, Object> getMembers();
+
+	Map<String, Object> getMember(String id);
+
+	Map<String, Object> addMember(MemberVO m);
+
+	Map<String, Object> updateMember(MemberVO m);
+
+	Map<String, Object> deleteMember(String id);
+}
