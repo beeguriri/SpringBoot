@@ -1,0 +1,14 @@
+GET		list_success		true		Fri Mar 31 16:48:36 KST 2023
+GET		get_success		true		Fri Mar 31 16:48:49 KST 2023
+POST		add_success		true		Fri Mar 31 16:49:17 KST 2023
+PUT		update_success		true		Fri Mar 31 16:49:48 KST 2023
+GET		get_success		true		Fri Mar 31 16:50:05 KST 2023
+GET		list_success		true		Fri Mar 31 16:50:09 KST 2023
+PUT		update_success		true		Fri Mar 31 16:50:19 KST 2023
+GET		list_success		true		Fri Mar 31 16:50:26 KST 2023
+PUT		update_success		true		Fri Mar 31 16:50:32 KST 2023
+GET		get_success		true		Fri Mar 31 16:50:55 KST 2023
+GET		get_fail		false		Fri Mar 31 16:56:53 KST 2023
+GET		list_success		true		Fri Mar 31 16:59:08 KST 2023
+PUT		null		true		Fri Mar 31 16:59:17 KST 2023
+DEL		del_fail		false		Fri Mar 31 16:59:47 KST 2023
