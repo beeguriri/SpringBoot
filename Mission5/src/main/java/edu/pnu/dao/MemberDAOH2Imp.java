@@ -39,7 +39,21 @@ public class MemberDAOH2Imp implements MemberDAO {
 	Map<String, Object> result = new HashMap<>();
 	
 	public MemberDAOH2Imp() {
-		System.out.println("====> MemberDAOH2Imp 생성자 호출");
+
+//		System.out.println("====> MemberDAOH2Imp 생성자 호출");
+//		try {
+////			
+////			Class.forName("org.h2.Driver");
+////			System.out.println("드라이브 로드");
+////			con = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/springboot", "sa", "");
+////			System.out.println("DB 접속 성공");
+//
+////			con = ds.getConnection();
+//			
+//		} catch (Exception e) {
+//			System.out.println("DB 접속 실패");
+//			e.printStackTrace();
+//		}
 	}
 	
 	@Override
