@@ -39,6 +39,7 @@ public class MemberDAOH2Imp implements MemberDAO {
 	Map<String, Object> result = new HashMap<>();
 	
 	public MemberDAOH2Imp() {
+
 //		System.out.println("====> MemberDAOH2Imp 생성자 호출");
 //		try {
 ////			
