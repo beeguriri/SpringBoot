@@ -11,15 +11,12 @@ import javax.persistence.TypedQuery;
 
 import com.rubypaper.domain.Board;
 
-public class JPAClient1 {
+public class JPAClient {
 	
-	//EntityManager 생성
 	public static EntityManagerFactory emf;
 	public static EntityManager em;
-	
-	//transaction 생성
 	public static EntityTransaction tx;
-		
+	
  	public static void insertBoard(EntityManagerFactory emf) {
  		
 		em = emf.createEntityManager();
@@ -31,19 +28,14 @@ public class JPAClient1 {
 
 			for(int i=1; i<=10; i++) {
 				
-				Board board = new Board();
-	
-				board.setTitle("JPA 제목" + i);
-				board.setWriter("Test");
-				board.setContent("JPA 글 등록 잘 되네요.");
-				board.setCreateDate(new Date());
-				board.setCnt(0L);
-				
-				//글 등록
+				Board board = Board.builder()
+						.title("title"+i)
+						.content("content-"+i)
+						.writer("writer")
+						.createDate(new Date())
+						.build();
 				em.persist(board);
-				
 			}	
-			
 			tx.commit();
 
  		} catch(Exception e) {
@@ -53,9 +45,9 @@ public class JPAClient1 {
 			em.close();
 		}
 	}
-	
-	public static void findBoardOne(EntityManagerFactory emf, Long seq) {
-					
+
+ 	public static void findBoardOne(EntityManagerFactory emf, Long seq) {
+		
 		em = emf.createEntityManager();
 
 		Board searchBoard = em.find(Board.class, seq);
@@ -70,7 +62,6 @@ public class JPAClient1 {
 		
 		String sql = "select b from Board b order by b.seq desc";
 		
-//		List<Board> boardList = em.createQuery(sql, Board.class).getResultList();
 		TypedQuery<Board> result = em.createQuery(sql, Board.class);
 		List<Board> boardList = result.getResultList();
 		
@@ -138,43 +129,24 @@ public class JPAClient1 {
 			em.close();
 		}
 	}
-	
+ 	
+ 	
 	public static void main(String[] args) {
-		
-		emf = Persistence.createEntityManagerFactory("Chapter04MySQL");
-		
-		try {
-			
-			//데이터를 입력
-			insertBoard(emf);
-			
-			//id가 1인 데이터를 출력
-//			findBoardOne(emf, 1L);
-			
-			//입력된 전체 데이터 출력 (JPA Query)
-//			findBoardManyJPAQuery(emf);
-			
-			//입력된 전체 데이터 출력 (Native Query)
-//			findBoardManyNativeQuery(emf);
-			
-			//id가 1인 데이터를 수정
-//			updateBoard(emf, 1L);
-			
-			//수정된 정보 확인
-//			findBoardOne(emf, 1L);
-			
-			//id가 2인 데이터를 삭제
-//			deleteBoard(emf, 2L);
-			
-			//삭제 결과 확인
-//			findBoardManyJPAQuery(emf);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
 
-		} finally {
-			emf.close();
-		}
+		emf = Persistence.createEntityManagerFactory("Chapter04-1H2");
+//		emf = Persistence.createEntityManagerFactory("Chapter04-1MySQL");
+		
+		insertBoard(emf);
+		
+//		findBoardOne(emf, 1L);
+//		
+//		findBoardManyJPAQuery(emf);
+//		
+//		findBoardManyNativeQuery(emf);
+//		
+//		updateBoard(emf, 1L);
+//		
+//		deleteBoard(emf, 2L);
+		
 	}
 }

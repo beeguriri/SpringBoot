@@ -2,15 +2,17 @@ package com.rubypaper.domain;
 
 import java.util.Date;
 
-//import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity //데이터베이스의 테이블과 매핑되는 클래스
+@Table(name="boardTest")
 public class Board {
 	
 	@Id
@@ -25,7 +27,7 @@ public class Board {
 	@Temporal(TemporalType.DATE)
 	private Date createDate;
 	
-	//@Column(length = 50)  해당 필드에 속성을 줄 수 있음(not null, default..)
+	@Column(length = 50)  //해당 필드에 속성을 줄 수 있음(기본값이 nullable : false, unique,...)
 	private Long cnt;
 	
 	public Long getSeq() {
