@@ -20,12 +20,15 @@
   
 ### src/main/java/service
 > `@Service` <br>
-> 내부에서 자바 로직 처리
+> `@Autowired` 객체 생성
+
+### src/main/java/edu/pnu/dao
+> `@Repository` <br>
++ 내부에서 자바 로직 처리
 
 ### src/main/java/edu/pnu/domain
 > 데이터I/O
 
-<br><hr>
 ### src/test/java/
 ```java
 @SpringBootTest
@@ -47,13 +50,12 @@ class Mission2ApplicationTests {
 	}
 }
 ```
-<br><hr>
+
 ### 패키징 생성
 + 프로젝트에서 우클릭 -> RunAs -> `maven install`
 + target/Mission2-SNAPSHOT.jar 생성 확인
 + jar파일에서 우클릭 -> show in terminal
 + `java -jar Mission2-0.0.1-SNAPSHOT.jar` 실행
-<br><hr>
 
 ### src/main/resources > "application.properties"
 + logging 메시지 level 옵션 설정
@@ -63,5 +65,15 @@ logging.level.edu.pnu = "error / warn/ info / debug / trace 중 선택"
 
 ## 💜 JPA
 + File -> New -> Others -> Maven -> `Maven Project`
++ SQL 쿼리 간단하게 작성
+
+### 관련파일
++ persistence.xml
+   + 데이터베이스 접속정보 등
++ pom.xml
++ `@Entity` class : 데이터베이스의 테이블과 매치
+   + EntityManagerFactory 
+   + EntityManager
+
 
 #### local : C:\workspace\SpringBoot
