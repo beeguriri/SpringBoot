@@ -1,5 +1,5 @@
-### SpringBoot 수업
-
+## 💜 Springboot
++ File -> New -> Others -> SpringBoot -> `Spring Starter Project`
 ### src/main/java/
 > Application.java
 
@@ -61,5 +61,7 @@ class Mission2ApplicationTests {
 logging.level.edu.pnu = "error / warn/ info / debug / trace 중 선택"
 ```
 
+## 💜 JPA
++ File -> New -> Others -> Maven -> `Maven Project`
 
 #### local : C:\workspace\SpringBoot
