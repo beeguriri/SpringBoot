@@ -18,13 +18,5 @@ public class Person {
 	private int year;
 	private String job;
 	private String hobby;
-	
-	public Person(String name, int year, String job, String hobby) {
-		super();
-		this.name = name;
-		this.year = year;
-		this.job = job;
-		this.hobby = hobby;
-	}
-	
+
 }
