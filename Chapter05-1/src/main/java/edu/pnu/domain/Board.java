@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
+@ToString(exclude = "member")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -35,7 +35,12 @@ public class Board {
 	private Long cnt;
 	
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="MEMBER_ID", nullable=true)
 	private Member member;
+	
+	public void setMember(Member member) {
+		this.member = member;
+		member.getBoardList().add(this);
+	}
 
 }
