@@ -36,7 +36,7 @@ public class Board {
 	
 	@ManyToOne
 	@JoinColumn(name="memberid", nullable=true)
-	private Member member;
+
 	
 	public void setMember(Member member) {
 		this.member = member;

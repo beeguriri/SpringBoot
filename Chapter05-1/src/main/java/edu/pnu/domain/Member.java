@@ -24,7 +24,7 @@ public class Member {
 
 	@Id
 	@Column(name="memberid")
-	private String id;
+
 	
 	private String password;
 	private String name;
