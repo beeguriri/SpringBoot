@@ -35,8 +35,8 @@ public class Board {
 	private Long cnt;
 	
 	@ManyToOne
-	@JoinColumn(name="MEMBER_ID", nullable=true)
-	private Member member;
+	@JoinColumn(name="memberid", nullable=true)
+
 	
 	public void setMember(Member member) {
 		this.member = member;

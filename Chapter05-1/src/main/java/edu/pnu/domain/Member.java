@@ -23,8 +23,8 @@ import lombok.ToString;
 public class Member {
 
 	@Id
-	@Column(name="MEMBER_ID")
-	private String id;
+	@Column(name="memberid")
+
 	
 	private String password;
 	private String name;
