@@ -1,5 +1,36 @@
 ## 💜 Springboot
 + File -> New -> Others -> SpringBoot -> `Spring Starter Project`
+
+## 💜 Springboot 프로젝트 작업 순서
+#### 0. application.properties 작성 (db, sql 관련 설정 등)
+#### 1. domain 파일 생성(`@Entity`, `@Builder`)
+#### 2. repository 파일 생성(`extends CrudRepository<Board, Long>`)
+#### 3. service 파일 생성(`@Service`)
+#### 4. controller 파일 생성(`@RestController`)
+
+## 💜 Springboot 프로젝트 작업 순서
+#### 0.1 JPA 사용 준비
++ pom.xml에 jpa관련 dependency 추가
+  + (Tomcat embeded jasper, jstl)
+  + (springboot에서 jpa를 기본적으로 지원하지 않음)
++ 폴더 구조 생성
+  + src > main > webapp > WEB-INF > board
+  + WEB-INF 폴더는 외부에서 접근 할 수 없는 폴더
+#### 0.2 application.properties 작성
+  + db, sql 관련 설정 등
+  + 사용 편의를 위하여 `spring.mvc.view.prefix=/WEB-INF/`, `spring.mvc.view.suffix=.jsp` 추가
+#### 1. domain 파일 생성(`@Entity`, `@Builder`)
+#### 2. repository 파일 생성(`extends CrudRepository<Board, Long>`)
+#### 3. service 파일 생성(`@Service`)
+#### 4. controller 파일 생성(`@Controller`)
+   + `@Controller` 어노테이션 사용 시, GetMapping, PostMapping만 사용할 수 있음
+   + return type String (jsp 호출)
+   + controller에서 view 호출(return .jsp)
+      + forward: 컨트롤러로 돌아오지 않고 다음 요청 수행 (request와 response, httpSession 객체 모두 유지)
+      + redirect: 컨트롤러로 돌아와서 다음 요청 수행   
+      + 참고자료 : https://doublesprogramming.tistory.com/63
+
+## 💜 Springboot 기본
 ### src/main/java/
 > Application.java
 
