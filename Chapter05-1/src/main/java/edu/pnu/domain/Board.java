@@ -29,15 +29,15 @@ public class Board {
 	private Long seq;
 	private String title;
 	private String content;
-	
+
 	@Temporal(value=TemporalType.TIMESTAMP)
 	private Date createDate;
 	private Long cnt;
-	
-	@ManyToOne
-	@JoinColumn(name="memberid", nullable=true)
 
-	
+	@ManyToOne
+	@JoinColumn(name="MEMBER_ID", nullable=true)
+	private Member member;
+
 	public void setMember(Member member) {
 		this.member = member;
 		member.getBoardList().add(this);
