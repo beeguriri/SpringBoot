@@ -98,7 +98,7 @@ public class BoardController {
 //		return "redirect:getBoardList";
 //	}
 	
-	@GetMapping("/updateBoard")
+	@PostMapping("/updateBoard")
 	public String updateBoard(Board board) {
 		
 		boardService.updateBoard(board);
