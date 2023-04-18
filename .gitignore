@@ -3,7 +3,6 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
-pom.xml
 !**/src/main/**/target/
 !**/src/test/**/target/
 .metadata/
