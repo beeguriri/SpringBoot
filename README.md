@@ -1,5 +1,76 @@
 ## 💜 Springboot
 + File -> New -> Others -> SpringBoot -> `Spring Starter Project`
++ Version
+   + SpringBoot 2.7.10
+   + maven-4.0.0
+   + java 17
++ Dependencies
+   + `H2 Database` &nbsp; `Lombok` &nbsp; `Spring Data JPA` &nbsp; `Spring Web` &nbsp; `Thymeleaf`
+<br>
+
+## 💜 Springboot - 게시판 만들기
+### 📰 Chapter06THFULL
+#### 1. Thymeleaf 이용한 View 생성(Chapter06TH)
+#### 2. Session을 이용한 로그인 구현
++ 로그인/로그아웃 
+```java
+@SessionAttributes("member")
+@Controller
+public class LoginController {
+	...
+	@PostMapping("/login")
+	public String login(Member member, Model model) {
+		
+		Member findMember = memberService.getMember(member);
+		
+		if(findMember !=null && findMember.getPassword().equals(member.getPassword())) {
+			model.addAttribute("member", findMember);
+			return "redirect:boardList";
+		}
+		else
+			return "redirect:login";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
+		
+		return "redirect:";
+	}
+	...
+}
+``` 
++ 인증상태 유지
+```java
+@SessionAttributes("member")
+@Controller
+public class BoardController {
+	
+	...
+	@ModelAttribute("member")
+	public Member setMember() {
+		return new Member();
+	}
+	
+	@GetMapping("/getBoard")
+	public String getBoard(@ModelAttribute("member") Member member, Model model, Board board) {
+		
+		if(member.getId() == null) 
+			return "redirect:login";
+		
+		model.addAttribute("board", boardService.getBoard(board));
+		
+		return "getBoard";
+	}
+```
++ 관리자권한을 가진 회원만 게시글 삭제처리
++ 비회원은 게시글 목록만 확인 가능
+   + 비회원일 경우 이름정보가 없으므로 html 내 3항연산자 사용
+   
+#### 3. 예외처리
+   
+<br>
 
 ## 💜 Springboot 프로젝트 작업 순서
 #### 0. application.properties 작성 (db, sql 관련 설정 등)
@@ -46,6 +117,7 @@
    <a th:href="@{/getBoardList}">
    <form th:action="insertBoard" method="post">
    ```  
+<br>
 
 ## 💜 Springboot 기본
 ### src/main/java/
